@@ -23,6 +23,7 @@ Route::get('/mapa',         'mapController@showMap')->name('showMap');
 
 
 Route::get('/bolsa',        'bagController@showBag')->name('showBag');
-Route::get('/bolsa/capturar/{id}',     'bagController@catchPoke')->name('catchPoke');
+
+Route::post('/bolsa/capturar',     'bagController@catchPoke');
 
 

@@ -78,14 +78,18 @@
 
                 $.ajax
                 ({
-                    url: 'bolsa/capturar/' + poke_id,
-                    method: 'get',
-                    dataType: 'json',
+                    url: 'bolsa/capturar',
+                    method: 'post',
+                    data: {'id':poke_id},
                     success: function (data) {
                         console.log(data);
-                        swal.fire('Você capturou ',pokemon_name,'success')
-
+                        swal.fire('Você capturou ',pokemon_name,'success');
+                    },
+                    error: function (data)
+                    {
+                        swal.fire('Ocorreu um erro','','error');
                     }
+
                 });
 
             })
