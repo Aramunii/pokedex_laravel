@@ -39,8 +39,7 @@
     <script type="text/javascript" src="{{asset ('js/core/app.js')}}"></script>
 
     <script type="text/javascript" src="{{asset ('js/plugins/ui/ripple.min.js')}}"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     <!-- /theme JS files -->
 </head>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -72,5 +71,8 @@
 @endif
 
 @yield('content')
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

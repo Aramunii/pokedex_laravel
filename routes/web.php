@@ -27,3 +27,7 @@ Route::get('/bolsa',        'bagController@showBag')->name('showBag');
 Route::post('/bolsa/capturar',     'bagController@catchPoke');
 
 
+Route::get('/inicio', 'startController@showIndex')->name('start');
+
+
+
