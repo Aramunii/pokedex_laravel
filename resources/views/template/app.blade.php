@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="pt_br">
 <head>
@@ -15,6 +16,7 @@
     <link href="{{asset ('css/components.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset ('css/colors.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset ('font-awesome/css/font-awesome.min.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <!-- /global stylesheets -->
@@ -48,6 +50,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js" integrity="sha512-dDguQu7KUV0H745sT2li8mTXz2K8mh3mkySZHb1Ukgee3cNqWdCFMFsDjYo9vRdFRzwBmny9RrylAkAmZf0ZtQ==" crossorigin="anonymous"></script>
 @stack('script')
+
+@if(!auth()->user()->Team && !Request::is('inicio'))
+    <script>window.location = "/inicio";</script>
+@endif
+
 @if(Session::has('message'))
     <style>
         .swal-wide{
@@ -69,8 +76,13 @@
     </script>
 
 @endif
+<div class="page-container">
+    <div class="page-content">
+        @yield('column')
+        @yield('content')
+    </div>
+</div>
 
-@yield('content')
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

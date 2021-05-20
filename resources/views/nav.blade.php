@@ -59,3 +59,4 @@ if (Auth::check()) {
         </div>
     </div>
 </div>
+@include('sidebar')

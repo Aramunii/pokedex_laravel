@@ -22,9 +22,11 @@ $(async function () {
             dataType: 'json',
             success: function (pokemon) {
 
+               var level = Math.floor(Math.random() * 10);
+
                 //Aqui você cria o 'container' de cada pokemon, montando um html básico.
                 var poke = `<div class='col-md-3'>
-                                       <a data-id='${pokemon.id}' data-name='${pokemon.name}' class='poke'>
+                                       <a data-id='${pokemon.id}' data-name='${pokemon.name}' data-level="${level}" class='poke'>
                                     <img popup='tooltip' title='${pokemon.name}' src='${pokemon.sprites.front_default}'>
                                       </a>
                                     </div>`
@@ -39,14 +41,11 @@ $(async function () {
 
     $('.poke').on('click',async function (){
 
-        level = Math.floor(Math.random() * 10);
-
+        level = $(this).data('level');
         pokemon_name = $(this).data('name');
         poke_id = $(this).data('id');
 
         $('#modal_poke').modal()
-
-
 
         var url = 'https://pokeapi.co/api/v2/pokemon/' + poke_id;
 
@@ -56,19 +55,15 @@ $(async function () {
             method: 'get',
             dataType: 'json',
             success: function (pokemon) {
-
-
                 $('#poke_name').text(pokemon_name);
                 $('#poke_level').text(level);
                 $('#poke_life').text(parseInt(pokemon.stats[0].base_stat * level / 5.6));
                 $('#poke_atk').text(parseInt(pokemon.stats[1].base_stat * level / 5.6));
                 $('#poke_def').text(parseInt(pokemon.stats[2].base_stat * level / 5.6));
                 $('#poke_img').attr('src',pokemon.sprites.front_default);
-
-
-
             }
         });
+
 /*
         $.ajax
         ({

@@ -19,6 +19,8 @@ Route::post('/login',       'mainController@postLogin')->name('postLogin');
 Route::get('/cadastrar',    'mainController@showRegister')->name('showRegister');
 Route::post('/cadastrar',   'mainController@postRegister')->name('postRegister');
 
+Route::get('/logout',       'mainController@postLogout')->name('logout');
+
 Route::get('/mapa',         'mapController@showMap')->name('showMap');
 
 
@@ -28,6 +30,8 @@ Route::post('/bolsa/capturar',     'bagController@catchPoke');
 
 
 Route::get('/inicio', 'startController@showIndex')->name('start');
+
+Route::post('/inicio/escolher' , 'startController@choosePoke')->name('choose');
 
 
 

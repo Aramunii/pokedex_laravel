@@ -5,8 +5,6 @@
     @endif
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="{{asset('js/scripts/map.js')}}" rel="script" type="text/javascript"></script>
-
-    <div class="container mt-20">
         <div class="panel panel-white">
             <div class="panel panel-heading">
                 <h4>Mapa</h4>
@@ -23,10 +21,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
 
     @include('map.modalPoke')
 

@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\bag;
+use App\PokeApi\PokeApi;
+use App\userPoke;
 use Illuminate\Http\Request;
 
 class bagController extends Controller
 {
-    public function showBag(){
+    public function showBag()
+    {
 
 
-        $bag = bag::where('user_id',auth()->user()->id)->orderBy('poke_id','asc')->pluck('poke_id')->toArray();
+        $userPoke = userPoke::where('user_id', auth()->user()->id)->orderBy('poke_id', 'asc')->get();
 
+        $pokemon = array();
 
+        if ($userPoke->isNotEmpty()) {
+            foreach ($userPoke as $poke) {
+                $pokemon[] = PokeApi::getPokeInfo($poke->poke_id);
+            }
+        }
 
-        return view("bag.index",['bag' => json_encode($bag)]);
+        return view("bag.index", ['pokemon' => $pokemon]);
     }
 
 
@@ -23,21 +31,21 @@ class bagController extends Controller
         $request = $request->all();
 
 
-        $bag =    bag::create([
+        $bag = userPoke::create([
             'user_id' => auth()->user()->id,
             'poke_id' => $request['id']
         ]);
 
-        if($bag){
-            return response('success',200);
+        if ($bag) {
+            return response('success', 200);
         }
 
-        return response('error',400);
+        return response('error', 400);
     }
 
-    public function removePoke(Request  $request)
+    public function removePoke(Request $request)
     {
-        $poke    = bag::where('user_id',auth()->user()->id)->where('poke_id',$request['poke_id'])->first();
+        $poke = userPoke::where('user_id', auth()->user()->id)->where('poke_id', $request['poke_id'])->first();
 
         $poke->delete();
 
