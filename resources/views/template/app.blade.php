@@ -51,7 +51,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js" integrity="sha512-dDguQu7KUV0H745sT2li8mTXz2K8mh3mkySZHb1Ukgee3cNqWdCFMFsDjYo9vRdFRzwBmny9RrylAkAmZf0ZtQ==" crossorigin="anonymous"></script>
 @stack('script')
 
-@if(!auth()->user()->Team && !Request::is('inicio'))
+@if(auth()->user() &&  !auth()->user()->Team && !Request::is('inicio'))
     <script>window.location = "/inicio";</script>
 @endif
 
@@ -80,6 +80,7 @@
     <div class="page-content">
         @yield('column')
         @yield('content')
+
     </div>
 </div>
 

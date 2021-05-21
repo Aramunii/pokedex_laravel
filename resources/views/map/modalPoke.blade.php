@@ -30,6 +30,11 @@
                 <div class="row">
                     <div class="col-md-12 text-center"><span class="text-bold">Defesa: </span> <span id="poke_def">100</span></div>
                 </div>
+                <div class="row mt-20">
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-group bg-danger-300">Batalhar</a>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">

@@ -18,7 +18,13 @@ class bagController extends Controller
 
         if ($userPoke->isNotEmpty()) {
             foreach ($userPoke as $poke) {
-                $pokemon[] = PokeApi::getPokeInfo($poke->poke_id);
+                $data =  PokeApi::getPokeInfo($poke->poke_id);
+                $pokemon[] = [
+                    'name' => $poke->name,
+                    'id' => $poke->poke_id,
+                    'img'=> $data->sprites->front_default
+                ] ;
+
             }
         }
 
@@ -59,6 +65,19 @@ class bagController extends Controller
          *
          *
          */
+    }
+
+    public  function showPoke($id)
+    {
+
+        $userPoke = userPoke::where('user_id',auth()->user()->id)->where('poke_id',$id)->first();
+
+        $data = PokeApi::getPokeInfo($userPoke->poke_id);
+
+        $userPoke['img'] = $data->sprites->front_default;
+
+
+        return view('bag.poke' , ['pokemon' => $userPoke ]) ;
     }
 
 

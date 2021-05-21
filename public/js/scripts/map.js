@@ -4,7 +4,7 @@ $(async function () {
 
     for(i=0;i<4; i++)
     {
-        var number = Math.floor(Math.random() * 700);
+        var number = Math.floor(Math.random() * 125);
         var url = 'https://pokeapi.co/api/v2/pokemon/' + number;
 
         /* Utilizando a função $.ajax({OPTIONS}) a gente passa os parametros
@@ -22,8 +22,11 @@ $(async function () {
             dataType: 'json',
             success: function (pokemon) {
 
-               var level = Math.floor(Math.random() * 10);
-
+                var user_level =  parseInt($('#user_level').val());
+                var max = user_level + 2
+                var level = Math.floor(Math.random() * (max - user_level) + user_level);
+                console.log(max);
+                console.log(level);
                 //Aqui você cria o 'container' de cada pokemon, montando um html básico.
                 var poke = `<div class='col-md-3'>
                                        <a data-id='${pokemon.id}' data-name='${pokemon.name}' data-level="${level}" class='poke'>
@@ -49,6 +52,8 @@ $(async function () {
 
         var url = 'https://pokeapi.co/api/v2/pokemon/' + poke_id;
 
+        var multiplier = level > 5 ? 5.6 : 1;
+
         await $.ajax
         ({
             url: url,
@@ -57,9 +62,9 @@ $(async function () {
             success: function (pokemon) {
                 $('#poke_name').text(pokemon_name);
                 $('#poke_level').text(level);
-                $('#poke_life').text(parseInt(pokemon.stats[0].base_stat * level / 5.6));
-                $('#poke_atk').text(parseInt(pokemon.stats[1].base_stat * level / 5.6));
-                $('#poke_def').text(parseInt(pokemon.stats[2].base_stat * level / 5.6));
+                $('#poke_life').text(parseInt(pokemon.stats[0].base_stat * level / multiplier));
+                $('#poke_atk').text(parseInt(pokemon.stats[1].base_stat * level / multiplier));
+                $('#poke_def').text(parseInt(pokemon.stats[2].base_stat * level / multiplier));
                 $('#poke_img').attr('src',pokemon.sprites.front_default);
             }
         });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserPokeTable extends Migration
+class CreateUserBattleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateUserPokeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_poke', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+        Schema::create('user_battle', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id');
             $table->integer('poke_id');
-            $table->string('name');
             $table->integer('level');
             $table->integer('hp');
+            $table->integer('hp_max');
             $table->integer('atk');
             $table->integer('def');
-            $table->integer('xp');
-            $table->integer('xp_max');
+            $table->boolean('finished')->default(false);
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateUserPokeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_bag');
+        Schema::dropIfExists('user_battle');
     }
 }

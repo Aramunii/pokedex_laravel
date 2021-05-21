@@ -13,25 +13,30 @@ trait PresenterUser
     {
 
         $team = $this->Team;
-
-        $pokemon =  [ $team->slot1,$team->slot2,$team->slot3 ];
-
         $html = '';
 
-        foreach ($pokemon as $poke)
+        if($team)
         {
-            if($poke)
+            $pokemon =  [ $team->slot1,$team->slot2,$team->slot3 ];
+
+
+            foreach ($pokemon as $poke)
             {
-                $data = PokeApi::getPokeInfo($poke);
+                if($poke)
+                {
+                    $data = PokeApi::getPokeInfo($poke);
 
-                $img = $data->sprites->front_default;
-                $name =  strtoupper($data->name);
+                    $img = $data->sprites->front_default;
+                    $name =  strtoupper($data->name);
 
-                $html .= "  <div  class='col-md-4'>
+                    $html .= "  <div  class='col-md-4'>
                                 <img width='70' src='$img' data-popup='tooltip' data-title='$name'>
                             </div>";
 
+                }
             }
+
+
         }
 
         return $html;

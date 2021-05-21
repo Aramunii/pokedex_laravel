@@ -24,14 +24,25 @@ Route::get('/logout',       'mainController@postLogout')->name('logout');
 Route::get('/mapa',         'mapController@showMap')->name('showMap');
 
 
-Route::get('/bolsa',        'bagController@showBag')->name('showBag');
-
-Route::post('/bolsa/capturar',     'bagController@catchPoke');
-
-
-Route::get('/inicio', 'startController@showIndex')->name('start');
-
-Route::post('/inicio/escolher' , 'startController@choosePoke')->name('choose');
 
 
 
+
+
+Route::prefix('inicio')->group(function () {
+
+    Route::get('', 'startController@showIndex')->name('start');
+    Route::post('escolher' , 'startController@choosePoke')->name('choose');
+
+});
+
+
+Route::prefix('bolsa')->group(function () {
+
+    Route::get('',        'bagController@showBag')->name('showBag');
+    Route::post('/capturar',     'bagController@catchPoke');
+
+    Route::get('pokemon/{id}' , 'bagController@showPoke')->name('showPoke');
+
+
+});

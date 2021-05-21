@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class userPoke extends Model
+class UserBattle extends Model
 {
+
 
     protected $table   = 'user_poke';
     protected $fillable = [
-        'user_id','poke_id','name','level','atk','def','hp','xp','xp_max'
+        'user_id','poke_id','level','atk','def','hp','hp_max','finished'
     ];
+
 }

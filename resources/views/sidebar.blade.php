@@ -26,7 +26,7 @@
                             {!! $user->Team_Info !!}
 
                         </div>
-
+                    <input type="hidden" id="user_level" value="{{$user->level}}">
                     </ul>
                 </div>
             </div>

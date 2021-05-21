@@ -3,7 +3,7 @@
         @extends('nav')
     @endif
 
-    <div class=" container mt-20">
+
         <div class="panel panel-white">
             <div class="panel panel-heading">
                 <h4>Escolha seu pokémon</h4>
@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <span>Bulbasaur</span>
                                 </div>
-                                <div class="row mt-10"><a class="btn btn-group bg-teal-300 choose-poke" data-id="1">Escolher</a></div>
+                                <div class="row mt-10"><a class="btn btn-group bg-teal-300 choose-poke" data-id="1" data-name="Bulbasaur">Escolher</a></div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <span>Charmander</span>
                                 </div>
-                                <div class="row mt-10"><a class="btn btn-group bg-teal-300  choose-poke" data-id="4">Escolher</a></div>
+                                <div class="row mt-10"><a class="btn btn-group bg-teal-300  choose-poke" data-id="4" data-name="Charmander">Escolher</a></div>
 
                             </div>
                             <div class="col-md-4">
@@ -38,14 +38,14 @@
                                 <div class="row">
                                     <span>Squirtle</span>
                                 </div>
-                                <div class="row mt-10"><a class="btn btn-group bg-teal-300  choose-poke" data-id="7">Escolher</a></div>
+                                <div class="row mt-10"><a class="btn btn-group bg-teal-300  choose-poke" data-id="7" data-name="Squirtle">Escolher</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
 
     <script>
 
@@ -53,6 +53,7 @@
 
             $('.choose-poke').on('click',function () {
                 var poke_id = $(this).data('id');
+                var name = $(this).data('name');
 
                 Swal.fire({
                     title: 'Deseja escolher este pokémon como inicial?',
@@ -67,7 +68,8 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: {
-                                'poke_id' :  poke_id
+                                'poke_id' :  poke_id,
+                                'name': name
                             },
                             success: function (data) {
                                 Swal.fire({
