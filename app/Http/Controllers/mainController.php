@@ -34,7 +34,13 @@ class mainController extends Controller
         ];
 
         if(auth()->attempt($credentials, true)) {
-            return redirect()->route('home');
+
+            if(auth()->user()->Team)
+            {
+                return redirect()->route('showMap');
+            }
+
+            return redirect()->route('start');
         } else {
             return Redirect::to('login')->with("message", "Usuário ou senha inválido!")->with('type', "error");
         }
@@ -69,6 +75,13 @@ class mainController extends Controller
         }
 
 
+    }
+
+    public function postLogout()
+    {
+        auth()->logout();
+
+        return redirect()->route('showLogin');
     }
 
 
