@@ -46,3 +46,10 @@ Route::prefix('bolsa')->group(function () {
 
 
 });
+
+Route::prefix('batalha')->group(function(){
+
+    Route::get('' , 'battleController@showIndex')->name('index');
+    Route::post('iniciar', 'battleController@startBattle')->name('start');
+
+});

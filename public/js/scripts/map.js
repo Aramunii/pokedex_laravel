@@ -66,6 +66,7 @@ $(async function () {
                 $('#poke_atk').text(parseInt(pokemon.stats[1].base_stat * level / multiplier));
                 $('#poke_def').text(parseInt(pokemon.stats[2].base_stat * level / multiplier));
                 $('#poke_img').attr('src',pokemon.sprites.front_default);
+                $('#poke_id').val(poke_id);
             }
         });
 

@@ -50,10 +50,13 @@ if (Auth::check()) {
                     <a href="/mapa">
                         <i class="icon-map4 position-left"></i>Mapa</a>
                 </li>
-
                 <li>
                     <a href="/bolsa">
                         <i class="icon-bag position-left"></i>Bolsa</a>
+                </li>
+                <li>
+                    <a href="/batalha">
+                        <i class="icon-atom2 position-left"></i>Batalha</a>
                 </li>
             </ul>
         </div>

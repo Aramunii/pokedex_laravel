@@ -32,7 +32,8 @@
                 </div>
                 <div class="row mt-20">
                     <div class="col-md-12 text-center">
-                        <a class="btn btn-group bg-danger-300">Batalhar</a>
+                        <input type="hidden" value="" id="poke_id">
+                        <a class="btn btn-group bg-danger-300" id="start_battle"> Batalhar</a>
                     </div>
                 </div>
 
@@ -44,4 +45,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(function () {
+
+            $('#start_battle').on('click',function () {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url : 'batalha/iniciar',
+                    method : 'POST',
+                    dataType: 'json',
+                    data: { poke_id : $('#poke_id').val(), poke_level : $('#poke_level').text()  },
+                    success: function (data) {
+                        swal.fire('Sucesso','Batalha iniciada com sucesso','sucess')
+                    },
+                    error: function (data) {
+                        swal.fire('Erro','Já existe uma batalha em andamento','error')
+                    }
+                })
+            })
+
+        })
+
+
+    </script>
+
+
 </div>

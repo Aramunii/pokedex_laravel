@@ -14,6 +14,7 @@ class bagController extends Controller
 
         $userPoke = userPoke::where('user_id', auth()->user()->id)->orderBy('poke_id', 'asc')->get();
 
+
         $pokemon = array();
 
         if ($userPoke->isNotEmpty()) {
